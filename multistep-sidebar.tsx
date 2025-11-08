@@ -71,7 +71,7 @@ const MultiStepSidebar = React.forwardRef<HTMLDivElement, MultiStepSidebarProps>
             <div className="flex flex-col items-center gap-2 px-6">
               <img
                 alt="Vyral PEO"
-                className="h-8 w-auto"
+                className="h-20 sm:h-24 md:h-28 w-auto"
                 src={logoUrl}
               />
               {/* Mobile Rotating Highlights */}

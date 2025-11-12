@@ -403,7 +403,12 @@ const SignUpForm = React.forwardRef<HTMLFormElement, SignUpFormProps>(
           Tell us about the property and your requested financing. We’ll use these details to generate
           instant pricing and show your best-fit terms right after you submit.
         </div>
-        <Modal isOpen={isPersonalModalOpen} onOpenChange={setIsPersonalModalOpen}>
+        <Modal
+          isOpen={isPersonalModalOpen}
+          onOpenChange={setIsPersonalModalOpen}
+          size="md"
+          placement="center"
+        >
           <ModalContent>
             {() => (
               <>
@@ -412,7 +417,8 @@ const SignUpForm = React.forwardRef<HTMLFormElement, SignUpFormProps>(
                   <div className="text-default-500">
                     Really quick... enter your details below to get your terms instantly 🫡
                   </div>
-                  <div className="grid grid-cols-12 gap-4">
+                  <div className="no-zoom w-full max-w-md mx-auto">
+                    <div className="grid grid-cols-12 gap-4">
                     <Input
                       className="col-span-12 md:col-span-6"
                       label="First Name"
@@ -453,6 +459,7 @@ const SignUpForm = React.forwardRef<HTMLFormElement, SignUpFormProps>(
                       onChange={handlePersonalPhoneChange}
                       {...inputProps}
                     />
+                    </div>
                   </div>
                 </ModalBody>
                 <ModalFooter>

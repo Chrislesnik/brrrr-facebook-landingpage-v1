@@ -3,12 +3,13 @@
 import type {InputProps, SelectProps} from "@heroui/react";
 
 import React from "react";
-import {Input, Select, SelectItem, Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button} from "@heroui/react";
+import {Input, Select, SelectItem, Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, Tooltip} from "@heroui/react";
 import states from "./states";
 import {cn} from "@heroui/react";
 import {ButtonWithBorderGradient} from "./button-with-border-gradient";
 import {LazyMotion, domAnimation, m, AnimatePresence} from "framer-motion";
 import {loadGoogleMaps} from "./google-maps-loader";
+import {Icon} from "@iconify/react";
 
 export type SignUpFormProps = React.HTMLAttributes<HTMLFormElement>;
 
@@ -217,6 +218,19 @@ const SignUpForm = React.forwardRef<HTMLFormElement, SignUpFormProps>(
       <span>
         {text} <span className="text-danger-500">*</span>
       </span>
+    );
+
+    const monthlyExpensesTooltip = (
+      <div className="text-sm">
+        <div className="font-medium mb-1">Includes all that apply:</div>
+        <ul className="list-disc pl-4 space-y-1">
+          <li>Property Taxes</li>
+          <li>Homeowner&apos;s Insurance</li>
+          <li>Flood Insurance</li>
+          <li>HOA Dues</li>
+          <li>Property Management Fees</li>
+        </ul>
+      </div>
     );
 
     const handleZipChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
@@ -844,7 +858,16 @@ const SignUpForm = React.forwardRef<HTMLFormElement, SignUpFormProps>(
               />
               <Input
                 className="col-span-12 md:col-span-6"
-                label={<Required text="Monthly Expenses" />}
+                label={
+                  <span className="inline-flex items-center gap-1">
+                    <Required text="Monthly Expenses" />
+                    <Tooltip content={monthlyExpensesTooltip} placement="top" className="max-w-xs" showArrow>
+                      <span className="text-default-400 cursor-help align-middle">
+                        <Icon icon="solar:info-circle-bold" width={16} />
+                      </span>
+                    </Tooltip>
+                  </span>
+                }
                 name="monthly-expenses"
                 placeholder="0.00"
                 type="text"
